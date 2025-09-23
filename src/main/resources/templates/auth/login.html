@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Bates Motel - Login</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+  </head>
+  <body>
+    <!-- HEADER -->
+    <div th:replace="fragments :: header"></div>
+
+    <!-- MAIN -->
+    <main class="auth-page">
+      <section class="auth-container">
+        <div class="logo">
+          <div class="circle"></div>
+          <h1>BATES MOTEL</h1>
+        </div>
+
+        <form class="login-form" th:action="@{/auth/login}" method="post">
+          <label>E-mail:</label>
+          <input type="email" name="username" required />
+
+          <label>Password:</label>
+          <input type="password" name="password" required />
+
+          <a href="#" class="forgot">Forgot your password?</a>
+
+          <button type="submit">LOGIN</button>
+        </form>
+
+        <div class="manager-link">
+          <p>Are you a manager? <a th:href="@{/manager/login}">Login</a></p>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <div th:replace="fragments :: footer"></div>
+  </body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<!-- HEADER -->
+<th:block th:fragment="header">
+  <header class="main-header">
+    <nav>
+      <ul class="nav-menu">
+        <li><a th:href="@{/about}">About us</a></li>
+        <li><a th:href="@{/rooms}">Rooms</a></li>
+        <li><a th:href="@{/suggestions}">Suggestions</a></li>
+        <li><a th:href="@{/services}">Services</a></li>
+        <li><a th:href="@{/events}">Events</a></li>
+        <li><a th:href="@{/auth/login}" class="active">Login/Registration</a></li>
+        <li><a href="#">EN</a></li>
+      </ul>
+    </nav>
+  </header>
+</th:block>
+
+<!-- FOOTER -->
+<th:block th:fragment="footer">
+  <footer class="main-footer">
+    <div class="contact">
+      <h3>CONTACT US</h3>
+      <p><strong>Phone number:</strong> 0656498625</p>
+      <p><strong>Our E-mail:</strong> motel.bates@gmail.com</p>
+      <p><strong>Find us on the map:</strong> bates__motel</p>
+    </div>
+
+    <div class="socials">
+      <a href="#"><img th:src="@{/images/linkedin.png}" alt="LinkedIn"></a>
+      <a href="#"><img th:src="@{/images/facebook.png}" alt="Facebook"></a>
+      <a href="#"><img th:src="@{/images/instagram.png}" alt="Instagram"></a>
+    </div>
+
+    <div class="policy">
+      <a href="#">Personal data protection policy</a>
+    </div>
+  </footer>
+</th:block>
+
+</body>
+</html>

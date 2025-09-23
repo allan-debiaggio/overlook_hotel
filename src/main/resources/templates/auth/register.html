@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Bates Motel - Register</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+  </head>
+  <body>
+    <!-- HEADER -->
+    <div th:replace="fragments :: header"></div>
+
+    <!-- MAIN -->
+    <main class="auth-page">
+      <section class="auth-container">
+        <div class="logo">
+          <div class="circle"></div>
+          <h1>BATES MOTEL</h1>
+        </div>
+
+        <form class="register-form" th:action="@{/auth/register}" method="post">
+          <label>E-mail:</label>
+          <input type="email" name="email" required />
+
+          <label>Password:</label>
+          <input type="password" name="password" required />
+
+          <label>Repeat password:</label>
+          <input type="password" name="confirmPassword" required />
+
+          <button type="submit">REGISTER</button>
+        </form>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <div th:replace="fragments :: footer"></div>
+  </body>
+</html>
