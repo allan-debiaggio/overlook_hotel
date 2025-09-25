@@ -16,7 +16,7 @@ public class AuthController {
         System.out.println(req);
         return req;
     }
-    @PostMapping("/admin/login") 
+    @PostMapping("/admin/login")
     // page de connection manager et employers
     public AuthRequest admLoginRequest(@RequestBody AuthRequest req){
         return req;
