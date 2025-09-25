@@ -1,49 +1,114 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" th:href="@{/css/style.css}">
-</head>
-<body>
-
-<!-- HEADER -->
-<th:block th:fragment="header">
-  <header class="main-header">
-    <nav>
-      <ul class="nav-menu">
-        <li><a th:href="@{/about}">About us</a></li>
-        <li><a th:href="@{/rooms}">Rooms</a></li>
-        <li><a th:href="@{/suggestions}">Suggestions</a></li>
-        <li><a th:href="@{/services}">Services</a></li>
-        <li><a th:href="@{/events}">Events</a></li>
-        <li><a th:href="@{/auth/login}" class="active">Login/Registration</a></li>
-        <li><a href="#">EN</a></li>
-      </ul>
-    </nav>
-  </header>
-</th:block>
-
 <!-- FOOTER -->
-<th:block th:fragment="footer">
+<!-- <th:block th:fragment="footer">
   <footer class="main-footer">
     <div class="contact">
       <h3>CONTACT US</h3>
       <p><strong>Phone number:</strong> 0656498625</p>
       <p><strong>Our E-mail:</strong> motel.bates@gmail.com</p>
       <p><strong>Find us on the map:</strong> bates__motel</p>
-    </div>
+    </div> -->
 
-    <div class="socials">
-      <a href="#"><img th:src="@{/images/linkedin.png}" alt="LinkedIn"></a>
-      <a href="#"><img th:src="@{/images/facebook.png}" alt="Facebook"></a>
-      <a href="#"><img th:src="@{/images/instagram.png}" alt="Instagram"></a>
-    </div>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+  <head th:fragment="head (pageTitle)">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title th:text="${pageTitle}">Bates Motel</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+  </head>
 
-    <div class="policy">
-      <a href="#">Personal data protection policy</a>
-    </div>
-  </footer>
-</th:block>
+  <body>
+    <!-- =========================
+         HEADER (фрагмент)
+         ========================= -->
+    <header th:fragment="header">
+      <div class="site-header">
+        <div class="site-header-inner">
+          <div class="brand">
+            <a th:href="@{/}" class="brand-link">
+              <img
+                th:src="@{/images/logo.png}"
+                alt="Bates logo"
+                class="brand-logo"
+              />
+              <span class="brand-title">BATES MOTEL</span>
+            </a>
+          </div>
 
-</body>
+          <nav class="main-nav" role="navigation" aria-label="Main navigation">
+            <ul class="nav-list">
+              <li class="nav-item"><a th:href="@{/about}">About us</a></li>
+              <li class="nav-item"><a th:href="@{/rooms}">Rooms</a></li>
+              <li class="nav-item">
+                <a th:href="@{/suggestions}">Suggestions</a>
+              </li>
+              <li class="nav-item"><a th:href="@{/services}">Services</a></li>
+              <li class="nav-item"><a th:href="@{/events}">Events</a></li>
+              <li class="nav-item">
+                <a th:href="@{/login-register}">Login/Registration</a>
+              </li>
+            </ul>
+          </nav>
+
+          <div class="header-controls">
+            <a class="lang-switch" th:href="@{/?lang=en}">EN</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- =========================
+         FOOTER (фрагмент) – контакти, соцмережі, політика
+         ========================= -->
+    <footer th:fragment="footer">
+      <div class="site-footer">
+        <div class="footer-inner">
+          <div class="footer-contact">
+            <h3 class="footer-title">CONTACT US</h3>
+
+            <dl class="contact-list">
+              <div class="contact-row">
+                <dt>Phone number :</dt>
+                <dd th:text="${contactPhone}">0656498625</dd>
+              </div>
+
+              <div class="contact-row">
+                <dt>Our E-mail :</dt>
+                <dd>
+                  <a
+                    th:href="'mailto:' + ${contactEmail}"
+                    th:text="${contactEmail}"
+                    >motel.bates@gmail.com</a
+                  >
+                </dd>
+              </div>
+
+              <div class="contact-row">
+                <dt>Find us on the map :</dt>
+                <dd th:text="${contactMap}">bates_motel</dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="footer-social">
+            <a th:href="${social.linkedinUrl}" th:if="${social.linkedinUrl}">
+              <img th:src="@{/images/linkedin1.svg}" alt="LinkedIn" />
+            </a>
+            <a th:href="${social.facebookUrl}" th:if="${social.facebookUrl}">
+              <img th:src="@{/images/facebook1.svg}" alt="Facebook" />
+            </a>
+            <a th:href="${social.instagramUrl}" th:if="${social.instagramUrl}">
+              <img th:src="@{/images/instagram1.svg}" alt="Instagram" />
+            </a>
+          </div>
+
+          <div class="footer-policy">
+            <a th:href="@{/privacy}" class="policy-link"
+              >Personal data protection policy</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
 </html>

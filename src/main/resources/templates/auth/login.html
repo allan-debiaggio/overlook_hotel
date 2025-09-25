@@ -1,41 +1,119 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Bates Motel - Login</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}" />
-  </head>
+<!-- <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+  <head th:replace="fragments :: head('Login')">
+   <link rel="stylesheet" th:href="@{/css/style.css}" -->
+<!-- </head>
   <body>
-    <!-- HEADER -->
-    <div th:replace="fragments :: header"></div>
+    <header th:replace="fragments :: header"></header>
 
-    <!-- MAIN -->
-    <main class="auth-page">
-      <section class="auth-container">
-        <div class="logo">
-          <div class="circle"></div>
-          <h1>BATES MOTEL</h1>
-        </div>
+    <main class="login-page">
+      <section class="login-form-container">
+        <h2 class="form-title">Login</h2>
 
-        <form class="login-form" th:action="@{/auth/login}" method="post">
-          <label>E-mail:</label>
-          <input type="email" name="username" required />
+        <form th:action="@{/login}" method="post" class="login-form">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required />
+          </div>
 
-          <label>Password:</label>
-          <input type="password" name="password" required />
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required />
+          </div>
 
-          <a href="#" class="forgot">Forgot your password?</a>
-
-          <button type="submit">LOGIN</button>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Sign in</button>
+          </div>
         </form>
-
-        <div class="manager-link">
-          <p>Are you a manager? <a th:href="@{/manager/login}">Login</a></p>
-        </div>
       </section>
     </main>
 
-    <!-- FOOTER -->
-    <div th:replace="fragments :: footer"></div>
+    <footer th:replace="fragments :: footer"></footer>
+  </body>
+</html> -->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="uk">
+  <head th:replace="fragments :: head('Login')"></head>
+  <body>
+    <header th:replace="fragments :: header"></header>
+
+    <!-- main content -->
+    <main class="auth-container">
+      <!-- Login form fragment & page -->
+      <div th:fragment="loginForm">
+        <section
+          class="auth-panel login-panel"
+          role="region"
+          aria-label="Login"
+        >
+          <div class="auth-card">
+            <h2>Login</h2>
+
+            <div class="auth-alert" th:if="${param.error}">
+              <p>Invalid username or password.</p>
+            </div>
+
+            <form
+              th:action="@{/login}"
+              method="post"
+              class="login-form"
+              novalidate
+            >
+              <input
+                type="hidden"
+                th:name="${_csrf.parameterName}"
+                th:value="${_csrf.token}"
+              />
+
+              <div class="form-row">
+                <label for="username">E-mail</label>
+                <input
+                  type="text"
+                  id="username"
+                  name="username"
+                  autocomplete="username"
+                  required
+                />
+              </div>
+
+              <div class="form-row">
+                <label for="password">Password</label>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  autocomplete="current-password"
+                  required
+                />
+              </div>
+
+              <div class="form-row form-actions">
+                <button type="submit" class="btn">Login</button>
+                <a th:href="@{/forgot-password}" class="link-small"
+                  >Forgot your password?</a
+                >
+              </div>
+            </form>
+
+            <div class="manager-login">
+              <span>Are you a manager?</span>
+              <a th:href="@{/manager/login}" class="link-emphasized">Login</a>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!--
+         Вбудовуємо форму реєстрації **тільки** якщо контролер поставив showRegister=true в model.
+         Таким чином ми НЕ додаємо новий шаблон файлу — використовуємо існуючий register.html (фрагмент registerForm).
+      -->
+      <div
+        th:if="${showRegister}"
+        th:replace="auth/register :: registerForm"
+      ></div>
+    </main>
+
+    <footer th:replace="fragments :: footer"></footer>
   </body>
 </html>
