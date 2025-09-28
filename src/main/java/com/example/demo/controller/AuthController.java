@@ -17,12 +17,14 @@ public class AuthController {
         return req;
     }
     @PostMapping("/admin/login")
+    // page de connection manager et employers
     public AuthRequest admLoginRequest(@RequestBody AuthRequest req){
         return req;
         
     }
 
     @PostMapping("/user/login")
+    // page de connection clients
     public AuthRequest UserLoginRequest(@RequestBody AuthRequest req){
         return req;
         
