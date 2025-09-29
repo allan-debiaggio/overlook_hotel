@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Room Management</title>
+    <link rel="stylesheet" th:href="@{/css/room-management.css}">
+</head>
+<body>
+
+<!-- include header from fragments.html -->
+<header th:replace="fragments :: header"></header>
+
+<main class="room-management">
+
+    <!-- Page controls -->
+    <div class="page-controls">
+        <button class="add-room-btn" onclick="openModal()">+ Add room</button>
+        <h2 class="manage-rooms-title">Manage Rooms</h2>
+    </div>
+
+    <!-- Rooms table -->
+    <table class="room-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Type</th>
+                <th>Price</th>
+                <th>Available</th>
+                <th>Extras</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Example static rows, later replace with th:each -->
+            <tr>
+                <td>1</td>
+                <td>Single</td>
+                <td>100</td>
+                <td>+</td>
+                <td>Fridge, TV</td>
+                <td>
+                    <button class="action-btn edit" onclick="openModal()">Edit</button>
+                    <button class="action-btn delete">Delete</button>
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Double</td>
+                <td>150</td>
+                <td>-</td>
+                <td>Fridge, TV, Mini-bar</td>
+                <td>
+                    <button class="action-btn edit" onclick="openModal()">Edit</button>
+                    <button class="action-btn delete">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</main>
+
+<!-- Modal for add/edit room -->
+<div id="roomModal" class="modal">
+    <div class="modal-content">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <h2>Add room</h2>
+        <form class="modal-form">
+            <label for="roomType">Type</label>
+            <input type="text" id="roomType" name="type" placeholder="Enter room type">
+
+            <label for="roomPrice">Price</label>
+            <input type="number" id="roomPrice" name="price" placeholder="Enter room price">
+
+            <label for="roomExtras">Extras</label>
+            <input type="text" id="roomExtras" name="extras" placeholder="Enter room extras">
+
+            <div class="modal-actions">
+                <button type="submit" class="save-btn">Save</button>
+                <button type="button" class="cancel-btn" onclick="closeModal()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- include footer from fragments.html -->
+<footer th:replace="fragments :: footer"></footer>
+
+<script>
+    function openModal() {
+        document.getElementById("roomModal").style.display = "flex";
+    }
+    function closeModal() {
+        document.getElementById("roomModal").style.display = "none";
+    }
+</script>
+
+</body>
+</html>

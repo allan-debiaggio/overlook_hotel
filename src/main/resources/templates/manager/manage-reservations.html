@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reservation Management</title>
+  <link rel="stylesheet" th:href="@{/css/reservation-management.css}">
+</head>
+<body>
+
+  <!-- Header fragment -->
+  <div th:replace="fragments/header :: header"></div>
+
+  <main>
+    <!-- Top bar -->
+    <div class="page-header">
+      <button class="add-btn" onclick="openModal()">+ Modify</button>
+      <h1>Manage Reservations</h1>
+    </div>
+
+    <!-- Reservations table -->
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Client</th>
+          <th>Room</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Mr. Marou</td>
+          <td>105</td>
+          <td>2025-05-11</td>
+          <td>2025-06-13</td>
+          <td>Completed</td>
+          <td>
+            <button class="modify-btn" onclick="openModal()">Modify</button>
+            <button class="cancel-btn">Cancel</button>
+          </td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Ms. Adele</td>
+          <td>207</td>
+          <td>2025-08-14</td>
+          <td>2025-08-19</td>
+          <td>Cancelled</td>
+          <td>
+            <button class="modify-btn" onclick="openModal()">Modify</button>
+            <button class="cancel-btn">Cancel</button>
+          </td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Mme. Aboudou</td>
+          <td>147</td>
+          <td>2026-07-19</td>
+          <td>2026-07-24</td>
+          <td>Pending</td>
+          <td>
+            <button class="modify-btn" onclick="openModal()">Modify</button>
+            <button class="cancel-btn">Cancel</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+
+  <!-- Modal -->
+  <div id="reservationModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Modify Reservation</h2>
+      </div>
+      <form class="modal-form">
+        <label for="client">Client</label>
+        <input type="text" id="client" name="client">
+
+        <label for="room">Room</label>
+        <input type="text" id="room" name="room">
+
+        <label for="start">Start Date</label>
+        <input type="date" id="start" name="start">
+
+        <label for="end">End Date</label>
+        <input type="date" id="end" name="end">
+
+        <label for="status">Status</label>
+        <select id="status" name="status">
+          <option>Completed</option>
+          <option>Cancelled</option>
+          <option>Pending</option>
+        </select>
+
+        <div class="modal-actions">
+          <button type="submit" class="save-btn">Save</button>
+          <button type="button" class="cancel-btn" onclick="closeModal()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer fragment -->
+  <div th:replace="fragments/footer :: footer"></div>
+
+  <!-- Modal script -->
+  <script>
+    function openModal() {
+      document.getElementById("reservationModal").style.display = "block";
+    }
+    function closeModal() {
+      document.getElementById("reservationModal").style.display = "none";
+    }
+  </script>
+
+</body>
+</html>

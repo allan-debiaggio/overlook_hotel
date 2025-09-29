@@ -1,64 +1,69 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="uk">
-  <head th:replace="fragments :: head('Register')"></head>
-  <body>
-    <header th:replace="fragments :: header"></header>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Bates Motel - Login / Registration</title>
+  <link rel="stylesheet" th:href="@{/css/login-registration.css}">
+</head>
+<body>
+  <!-- Header -->
+  <header th:replace="fragments/header :: header"></header>
 
-    <!-- fragment with the register form (usable standalone or as fragment) -->
-    <div th:fragment="registerForm">
-      <section
-        class="auth-panel register-panel"
-        role="region"
-        aria-label="Register"
-      >
-        <div class="auth-card">
+  <!-- Main content -->
+  <main class="login-registration-page page-wrapper">
+    <div class="content-inner">
+      
+      <!-- Brand row -->
+      <div class="brand-row">
+        <section class="hotel-brand">
+          <img th:src="@{/images/logo0.png}" alt="Bates Motel Logo" class="hotel-logo">
+          <h1 class="hotel-title">BATES MOTEL</h1>
+        </section>
+
+        <section class="manager-login">
+          <p>
+            Are you a manager?
+            <a th:href="@{/manager/login}">Login</a>
+          </p>
+        </section>
+      </div>
+
+      <!-- Forms container -->
+      <section class="forms-container">
+        <!-- Registration Form -->
+        <form class="register-form" th:action="@{/register}" method="post">
           <h2>Register</h2>
 
-          <form
-            th:action="@{/register}"
-            method="post"
-            class="register-form"
-            novalidate
-          >
-            <input
-              type="hidden"
-              th:name="${_csrf.parameterName}"
-              th:value="${_csrf.token}"
-            />
+          <label for="reg-email">E-mail:</label>
+          <input type="email" id="reg-email" name="email" required>
 
-            <div class="form-row">
-              <label for="reg-email">E-mail</label>
-              <input type="email" id="reg-email" name="email" required />
-            </div>
+          <label for="reg-password">Password:</label>
+          <input type="password" id="reg-password" name="password" required>
 
-            <div class="form-row">
-              <label for="reg-password">Password</label>
-              <input
-                type="password"
-                id="reg-password"
-                name="password"
-                required
-              />
-            </div>
+          <label for="reg-repeat-password">Repeat Password:</label>
+          <input type="password" id="reg-repeat-password" name="repeatPassword" required>
 
-            <div class="form-row">
-              <label for="reg-password2">Repeat password</label>
-              <input
-                type="password"
-                id="reg-password2"
-                name="confirmPassword"
-                required
-              />
-            </div>
+          <button type="submit" class="auth-btn btn-register">Register</button>
+        </form>
 
-            <div class="form-row form-actions">
-              <button type="submit" class="btn">Register</button>
-            </div>
-          </form>
-        </div>
+        <!-- Login Form -->
+        <form class="login-form" th:action="@{/user/login}" method="post">
+          <h2>Login</h2>
+
+          <label for="login-email">E-mail:</label>
+          <input type="email" id="login-email" name="email" required>
+
+          <label for="login-password">Password:</label>
+          <input type="password" id="login-password" name="password" required>
+
+          <a href="#" class="forgot-password">Forgot your password?</a>
+          <button type="submit" class="auth-btn btn-login">Login</button>
+        </form>
       </section>
     </div>
+  </main>
 
-    <footer th:replace="fragments :: footer"></footer>
-  </body>
+  <!-- Footer -->
+  <footer th:replace="fragments/footer :: footer"></footer>
+</body>
 </html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Management</title>
+    <link rel="stylesheet" th:href="@{/css/employee-management.css}">
+</head>
+<body>
+
+    <!-- Header fragment -->
+    <div th:replace="fragments/header :: header"></div>
+
+    <main class="employee-management">
+
+        <!-- Top bar -->
+        <div class="top-bar">
+            <button class="btn-add-room" onclick="openModal()">+ Add Employee</button>
+            <h2 class="page-title">Manage Employees</h2>
+        </div>
+
+        <!-- Employees table -->
+        <table class="employee-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>E-mail</th>
+                    <th>Role</th>
+                    <th>Schedule</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Alice Johnson</td>
+                    <td>alice.j@example.com</td>
+                    <td>Receptionist</td>
+                    <td>09:00 - 17:00</td>
+                    <td>
+                        <button class="btn-edit" onclick="openModal()">Edit</button>
+                        <button class="btn-delete">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Bob Smith</td>
+                    <td>bob.s@example.com</td>
+                    <td>Cleaner</td>
+                    <td>07:00 - 15:00</td>
+                    <td>
+                        <button class="btn-edit" onclick="openModal()">Edit</button>
+                        <button class="btn-delete">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Carol Williams</td>
+                    <td>carol.w@example.com</td>
+                    <td>Manager</td>
+                    <td>08:00 - 17:00</td>
+                    <td>
+                        <button class="btn-edit" onclick="openModal()">Edit</button>
+                        <button class="btn-delete">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </main>
+
+    <!-- Modal Add/Edit Employee -->
+    <div id="employeeModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <h2>Add Employee</h2>
+            <form>
+                <label for="employeeName">Name</label>
+                <input type="text" id="employeeName" name="name" placeholder="Enter employee name">
+
+                <label for="employeeMail">E-mail</label>
+                <input type="email" id="employeeMail" name="email" placeholder="Enter e-mail">
+
+                <label for="employeeRole">Role</label>
+                <input type="text" id="employeeRole" name="role" placeholder="Enter employee role">
+
+                <label for="employeeSchedule">Schedule</label>
+                <input type="text" id="employeeSchedule" name="schedule" placeholder="e.g. 09:00 - 17:00">
+
+                <button type="submit" class="btn-save">Save</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer fragment -->
+    <div th:replace="fragments/footer :: footer"></div>
+
+    <script>
+        function openModal() {
+            document.getElementById("employeeModal").style.display = "block";
+        }
+        function closeModal() {
+            document.getElementById("employeeModal").style.display = "none";
+        }
+    </script>
+
+</body>
+</html>
